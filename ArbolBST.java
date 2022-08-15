@@ -35,7 +35,7 @@ public class ArbolBST{
                                                                                        // izquierdo va antes y es 1 si
                                                                                        // el derecho va antes)
         if (indicecomparador < 0) {
-            System.out.println(nodoacomparar.valor + " y " + elemento.valor + " - El primero va antes");
+            System.out.println(elemento.valor + " Debe de colocarse a la derecha de " + nodoacomparar.valor);
             if (nodoacomparar.nododerecho == null) { // aqui vemos si el nodo actual de comparación no tiene hijo
                                                      // derecho
                 nodoacomparar.nododerecho = elemento;
@@ -44,8 +44,7 @@ public class ArbolBST{
                 return;
             }
         } else {// aqui entra si indicecomparador es mayor a 0, o si es 0
-            System.out.println(
-                    nodoacomparar.valor + " y " + elemento.valor + " - El segundo va antes " + indicecomparador);
+            System.out.println(elemento.valor + " Debe de colocarse a la izquierda de " + nodoacomparar.valor);
             if (nodoacomparar.nodoizquierdo == null) { // aqui vemos si el nodo actual de comparación no tiene hijo
                                                        // izquierdo
                 nodoacomparar.nodoizquierdo = elemento;
@@ -56,8 +55,9 @@ public class ArbolBST{
         }
     }
 
-    public void buscar(String elementoabuscar) { // String porque sabemos que trabajaremos con estos
-        if (noderoot == null) {
+    public void buscar(String elementoabuscar){ // String porque sabemos que trabajaremos con estos
+        System.out.println("ENTRAMOS A BUSQUEDA");
+        if (noderoot.valor == null) {
             System.out.println("no hay nodos");
             return;
         } else {
@@ -71,7 +71,7 @@ public class ArbolBST{
                                                                                              // 1 si el derecho va
                                                                                              // antes)
         if (indicecomparador == 0) {// verificamos si coincide
-            System.out.println("Las palabras " + elementoabuscar + " son iguales");
+            System.out.println("Las palabras " + elementoabuscar + " son iguales - MATCH");
             palabrasplagiadas++;
             return;
         } else {
@@ -80,7 +80,7 @@ public class ArbolBST{
                     System.out.println("palabra no encontrada");
                     return;
                 }
-                System.out.println("La primera cadena va antes " + indicecomparador);
+                System.out.println(elementoabuscar + " Debe estar a la derecha de " + elementoreferencia.valor);
                 buscarauxiliar(elementoreferencia.nododerecho, elementoabuscar);
                 return;
             } else {
@@ -88,13 +88,10 @@ public class ArbolBST{
                     System.out.println("palabra no encontrada");
                     return;
                 }
-                System.out.println("La primera cadena va despues " + indicecomparador);
+                System.out.println(elementoabuscar + " Debe estar a la izquierda de " + elementoreferencia.valor);
                 buscarauxiliar(elementoreferencia.nodoizquierdo, elementoabuscar);
                 return;
             }
         }
     }
-
-    // private static agregar
-
 }
