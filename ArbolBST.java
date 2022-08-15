@@ -19,7 +19,7 @@ public class ArbolBST{
 
     }
 
-    private void insertar(Node elemento) {//para insertar nodos
+    public void insertar(Node elemento) {//para insertar nodos
         if (numerodenodos == 0) {// si no hay nodos el que vamos a añadir debe ser la raiz
             numerodenodos++;
             noderoot = elemento;
@@ -30,7 +30,7 @@ public class ArbolBST{
 
     // como este nodo sera String, usaremos el compareitor para eso estamos
     // importando una libreria
-    private void integrarhijo(Node nodoacomparar, Node elemento) {
+    public void integrarhijo(Node nodoacomparar, Node elemento) {
         int indicecomparador = comparador.compare(nodoacomparar.valor, elemento.valor);// aqui comparamos(-1 si el
                                                                                        // izquierdo va antes y es 1 si
                                                                                        // el derecho va antes)
@@ -56,7 +56,7 @@ public class ArbolBST{
         }
     }
 
-    private void buscar(String elementoabuscar) { // String porque sabemos que trabajaremos con estos
+    public void buscar(String elementoabuscar) { // String porque sabemos que trabajaremos con estos
         if (noderoot == null) {
             System.out.println("no hay nodos");
             return;
@@ -65,7 +65,7 @@ public class ArbolBST{
         }
     }
 
-    private void buscarauxiliar(Node elementoreferencia, String elementoabuscar) {
+    public void buscarauxiliar(Node elementoreferencia, String elementoabuscar) {
         int indicecomparador = comparador.compare(elementoreferencia.valor, elementoabuscar);// aqui comparamos(-1 si el
                                                                                              // izquierdo va antes y es
                                                                                              // 1 si el derecho va

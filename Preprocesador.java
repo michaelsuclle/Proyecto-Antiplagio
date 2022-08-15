@@ -6,7 +6,6 @@ public class Preprocesador {
 	}
 
 	public Preprocesador(String textooriginal){
-		this.textooriginal=textooriginal.replaceAll("\n", "");
 		iniciarPreprocesamiento();
 	}
 
