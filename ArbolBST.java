@@ -5,15 +5,15 @@ public class ArbolBST{
     int numerodenodos;
     int palabrasplagiadas = 0;
 
-    public static void main(String[] args) {
-	    comparador.setStrength(Collator.SECONDARY);//SECONDARY es una configuración para que comparador ignore ACENTOS, MAYUSCULAS y caracteres especiales(a diferencia de compareTo)
-        ArbolBST arbol = new ArbolBST();
-        arbol.insertar(new Node("hola"));
-        arbol.insertar(new Node("amor"));
-        arbol.insertar(new Node("rosa"));
-        arbol.insertar(new Node("szzs"));
-        arbol.buscar("szZs");
-    }
+//    public static void main(String[] args) {
+//	    comparador.setStrength(Collator.SECONDARY);//SECONDARY es una configuración para que comparador ignore ACENTOS, MAYUSCULAS y caracteres especiales(a diferencia de compareTo)
+//        ArbolBST arbol = new ArbolBST();
+//        arbol.insertar(new Node("hola"));
+//        arbol.insertar(new Node("amor"));
+//        arbol.insertar(new Node("rosa"));
+//        arbol.insertar(new Node("szzs"));
+//        arbol.buscar("szZs");
+//    }
 
     public ArbolBST() {
 
