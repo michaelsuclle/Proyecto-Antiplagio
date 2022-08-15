@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Preprocesador {
 	static String textooriginal;//texto que es 100% original 
-	private ArrayList<ArbolBST> arreglodearboles= new ArrayList<ArbolBST>();
+	private ArrayList<ArbolBST> arreglodearboles= new ArrayList<ArbolBST>();//en cada arbol hay una oración
 	public Preprocesador(){
 	}
 
@@ -24,11 +24,10 @@ public class Preprocesador {
 		int contadordecalidad = 0;
 		for (int i=0; i<textooriginal.length(); i++){
 			String caractertemporal = textooriginal.substring(i,i+1);
-			if(caractertemporal.equals(" ")){
+			if(caractertemporal.equals(" ")||caractertemporal.equals(";")||caractertemporal.equals(":")){ //aqui termina una palabra, hemos generalizado un poco esto
 				if(contadordecalidad >3){
 					oraciontemporal.add(palabratemporal);
-					System.out.println(palabratemporal + " - es una palabra util");
-				}
+					System.out.println(palabratemporal + " - es una palabra util");				}
 				palabratemporal = "";
 				contadordecalidad = 0;
 				continue;
