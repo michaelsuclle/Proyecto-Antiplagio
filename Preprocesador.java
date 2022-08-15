@@ -32,7 +32,7 @@ public class Preprocesador {
 				contadordecalidad = 0;
 				continue;
 
-			}else if(caractertemporal.equals(".")){
+			}else if(caractertemporal.equals(".")){//si encontramos un . significa que acabo una oración
 
 				System.out.println("\naqui termino una oración\n");
 
@@ -43,9 +43,9 @@ public class Preprocesador {
 
 				palabratemporal = "";
 				contadordecalidad = 0;
-			}else{
+			}else{//aqui entra si encuentra una letra o otro simbolo que se escapa
 				palabratemporal += caractertemporal;
-				contadordecalidad++;
+				contadordecalidad++;//el conteo de calidad cuenta cuantas letras tiene la palabra hasta el momento
 			}
 		}
 
