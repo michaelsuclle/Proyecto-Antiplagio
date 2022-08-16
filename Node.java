@@ -1,5 +1,8 @@
-public class Node<T> extends requerimientosNode { // si heredamos una clase generica podemos tener atributos de caracter con flexibilidad/mutabilidad de tipo
-    public Node( T valor ) {
+public class Node implements java.io.Serializable{ // si heredamos una clase generica podemos tener atributos de caracter con flexibilidad/mutabilidad de tipo
+    String valor;
+    Node nododerecho;
+    Node nodoizquierdo;
+    public Node( String valor ) {
         this.valor = valor;
     }
 
@@ -8,8 +11,3 @@ public class Node<T> extends requerimientosNode { // si heredamos una clase gene
     }
 }
 
-class requerimientosNode<T> {
-    T valor;
-    Node nododerecho;
-    Node nodoizquierdo;
-}
