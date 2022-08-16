@@ -36,6 +36,7 @@ public class ArbolBST implements java.io.Serializable{//tiene que se serializabl
     // como este nodo sera String, usaremos el compareitor para eso estamos
     // importando una libreria
     public void integrarhijo(Node nodoacomparar, Node elemento) {
+        comparador.setStrength(Collator.SECONDARY);
         int indicecomparador = comparador.compare(nodoacomparar.valor, elemento.valor);// aqui comparamos(-1 si el
                                                                                        // izquierdo va antes y es 1 si
                                                                                        // el derecho va antes)
@@ -61,52 +62,50 @@ public class ArbolBST implements java.io.Serializable{//tiene que se serializabl
     }
 
     public void buscar(String elementoabuscar){ // String porque sabemos que trabajaremos con estos
-        System.out.println("ENTRAMOS A BUSQUEDA");
-        System.out.println(noderoot.valor + " VS "+ elementoabuscar);
+        //System.out.println("ENTRAMOS A BUSQUEDA");
         if (noderoot == null||noderoot.valor == null) {
-            System.out.println("no hay nodos");
+            //System.out.println("no hay nodos");
             return;
         } else {
-            System.out.println(" vs buscando en  ");
-        //    //buscarauxiliar(noderoot, elementoabuscar);
+            //System.out.println(" vs buscando en  ");
+            buscarauxiliar(noderoot, elementoabuscar);
         }
     }
 
-    //public void buscarauxiliar(Node elementoreferencia, String elementoabuscar) {
-    //    System.out.println("entramos a buscar");
-    //    int indicecomparador = comparador.compare(elementoreferencia.valor, elementoabuscar);// aqui comparamos(-1 si el
-    //                                                                                         // izquierdo va antes y es
-    //                                                                                         // 1 si el derecho va
-    //                                                                                         // antes)
-    //    System.out.println("pasamos compare");
-    //    if (indicecomparador == 0) {// verificamos si coincide
-    //        System.out.println("Las palabras " + elementoabuscar + " son iguales - MATCH");
-    //        palabrasplagiadas++;
-    //        return;
-    //    } else {
-    //        if (indicecomparador < 0) {//
-    //            if (elementoreferencia.nododerecho == null) {
-    //                System.out.println("palabra no encontrada");
-    //                return;
-    //            }
-    //            //System.out.println(elementoabuscar + " Debe estar a la derecha de " + elementoreferencia.valor);
-    //            buscarauxiliar(elementoreferencia.nododerecho, elementoabuscar);
-    //            return;
-    //        } else {
-    //            if (elementoreferencia.nodoizquierdo == null) {
-    //                System.out.println("palabra no encontrada");
-    //                return;
-    //            }
-    //            //System.out.println(elementoabuscar + " Debe estar a la izquierda de " + elementoreferencia.valor);
-    //            buscarauxiliar(elementoreferencia.nodoizquierdo, elementoabuscar);
-    //            return;
-    //        }
-    //    }
-    //}
-    public void imprimirArbol() {
-        impresorAyudante(this.noderoot, "", true);
+    public void buscarauxiliar(Node elementoreferencia, String elementoabuscar) {
+        //System.out.println("entramos a buscar");
+        comparador.setStrength(Collator.SECONDARY);
+        int indicecomparador = comparador.compare(elementoreferencia.valor, elementoabuscar);// aqui comparamos(-1 si el
+                                                                                             // izquierdo va antes y es
+                                                                                             // 1 si el derecho va
+                                                                                             // antes)
+        if (indicecomparador == 0) {// verificamos si coincide
+            System.out.println("Las palabras " + elementoabuscar + " son iguales - MATCH");
+            palabrasplagiadas++;
+            return;
+        } else {
+            if (indicecomparador < 0) {//
+                if (elementoreferencia.nododerecho == null) {
+                    //System.out.println("palabra no encontrada");
+                    return;
+                }
+                //System.out.println(elementoabuscar + " Debe estar a la derecha de " + elementoreferencia.valor);
+                buscarauxiliar(elementoreferencia.nododerecho, elementoabuscar);
+                return;
+            } else {
+                if (elementoreferencia.nodoizquierdo == null) {
+                    //System.out.println("palabra no encontrada");
+                    return;
+                }
+                //System.out.println(elementoabuscar + " Debe estar a la izquierda de " + elementoreferencia.valor);
+                buscarauxiliar(elementoreferencia.nodoizquierdo, elementoabuscar);
+                return;
+            }
+        }
     }
-
+    public void imprimirArbol() {
+      impresorAyudante(this.noderoot, "", true);
+    }
     private void impresorAyudante(Node currPtr, String indent, boolean last) {
         // para imprimir la estructura en pantalla
         if (currPtr != null) {

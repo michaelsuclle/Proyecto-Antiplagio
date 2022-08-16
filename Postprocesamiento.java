@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 public class Postprocesamiento implements java.io.Serializable{//tiene que se serializable para poder leerse y escribirse
+    private static ArrayList<String> arreglolimpiodetextodudoso = new ArrayList<String>();
+    private static boolean primeravezentrando = true;
     private String textodudoso="";//este es el texto de dudosa procedencia
 
     public Postprocesamiento(String textodudoso, Preprocesador preprocesado){
@@ -13,18 +15,36 @@ public class Postprocesamiento implements java.io.Serializable{//tiene que se se
 //    }
 
     public void iniciarPostprocesamiento(Preprocesador preprocesado) {
-		String palabratemporal = "";
-		int contadordecalidad = 0;
         ArrayList<ArbolBST> arreglodearbolestemporal = preprocesado.getArreglodeArboles();
+        if (primeravezentrando == false) {
+            System.out.println("YA NO ES LA PRIMERA VEZ ENTRANDO A POSTPROCESAMIENTO");
+            for (String palabralimpiatemporal : arreglolimpiodetextodudoso) {
+                for (int j = 0; j < arreglodearbolestemporal.size(); j++) {// iteramos cada arbol de el archivo
+
+                    arreglodearbolestemporal.get(j).buscar(palabralimpiatemporal);// aqui estamos buscando en cada arbol,
+                                                                            // arbol por arbol
+                }
+            }
+            return;
+        }
+        System.out.println("PRIMERA VEZ ENTRANDO A POSTPROCESAMIENTO");
+        primeravezentrando = false;
+        String palabratemporal = "";
+        int contadordecalidad = 0;
 
         for (int i = 0; i < textodudoso.length(); i++) {
             String caractertemporal = textodudoso.substring(i, i + 1);
-            if (caractertemporal.equals(" ") || caractertemporal.equals(";") || caractertemporal.equals(":")|| caractertemporal.equals("\n")|| caractertemporal.equals(",")) { // aqui termina una palabra, hemos generalizado un poco esto
+            if (caractertemporal.equals(" ") || caractertemporal.equals(";") || caractertemporal.equals(":")
+                    || caractertemporal.equals("\n") || caractertemporal.equals(",")) { // aqui termina una palabra,
+                                                                                        // hemos generalizado un poco
+                                                                                        // esto
                 if (contadordecalidad > 3) {
-                    System.out.println(palabratemporal + " - es una palabra util");
-                    for (int j = 0; j < arreglodearbolestemporal.size(); j++) {
+                    //System.out.println(palabratemporal + " - es una palabra util");
+                    arreglolimpiodetextodudoso.add(palabratemporal);//lo añadimos a esta variable porque es insulso calcular las palabras utiles cada vez que se llame a el postprocesdor con un diferente preprocesado
+                    for (int j = 0; j < arreglodearbolestemporal.size(); j++) {// iteramos cada arbol de el archivo
 
-                        arreglodearbolestemporal.get(j).buscar(palabratemporal);// aqui estamos buscando en cada arbol, arbol por arbol
+                        arreglodearbolestemporal.get(j).buscar(palabratemporal);// aqui estamos buscando en cada arbol,
+                                                                                // arbol por arbol
                     }
                 }
 
@@ -35,7 +55,8 @@ public class Postprocesamiento implements java.io.Serializable{//tiene que se se
             } else if (caractertemporal.equals(".")) {// si encontramos un . significa que acabo una oración
 
                 if (contadordecalidad > 3) {
-                    System.out.println(palabratemporal + " - es una palabra util");
+                    //System.out.println(palabratemporal + " - es una palabra util");
+                    arreglolimpiodetextodudoso.add(palabratemporal);
                     for (int j = 0; j < arreglodearbolestemporal.size(); j++) {
                         // System.out.println("entro a el bucle de arboles");
 
@@ -43,10 +64,8 @@ public class Postprocesamiento implements java.io.Serializable{//tiene que se se
                                                                                 // palabra por
                     }
                 }
+                //System.out.println("\naqui termino una oración\n");
 
-                System.out.println("\naqui termino una oración\n");
-
-                // enviamos el arbol temporal a el arreglo global
 
                 palabratemporal = "";
                 contadordecalidad = 0;
@@ -60,7 +79,8 @@ public class Postprocesamiento implements java.io.Serializable{//tiene que se se
     public static void informarPlagio(Preprocesador preprocesado) {
         ArrayList<ArbolBST> arraydearbolesttemporal = preprocesado.getArreglodeArboles();
         for (int i = 0; i < arraydearbolesttemporal.size(); i++) {
-            System.out.println("la oración " + (i+1) + " tuvo " + arraydearbolesttemporal.get(i).palabrasplagiadas+ "palabras plagiadas");
+            System.out.println("la oración " + (i + 1) + " tuvo " + arraydearbolesttemporal.get(i).palabrasplagiadas
+                    + "palabras plagiadas");
         }
     }
 

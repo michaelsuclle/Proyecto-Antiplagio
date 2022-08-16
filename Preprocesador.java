@@ -49,12 +49,12 @@ public class Preprocesador implements java.io.Serializable{//tiene que se serial
 
 			}else if(caractertemporal.equals(".")){//si encontramos un . significa que acabo una oración
 
-				System.out.println("\naqui termino una oración\n");
+				//System.out.println("\naqui termino una oración\n");
 
 
 				//enviamos el arbol temporal a el arreglo global
 				this.getArreglodeArboles().add(arboltemporal);
-				System.out.println("agregando arbol");
+				//System.out.println("agregando arbol");
 				arboltemporal = new ArbolBST();
 
 				palabratemporal = "";
@@ -66,5 +66,6 @@ public class Preprocesador implements java.io.Serializable{//tiene que se serial
 		}
 		this.getArreglodeArboles().add(arboltemporal);
 
+		System.out.println("Preprocesamiento finalizado");
 	}
 }

@@ -17,24 +17,6 @@ public class Main  {
     static Postprocesamiento objetopostprocesador;
     public static void main(String[] args) {
 
-        // Preprocesador obj = new Preprocesador(
-        // "Había una vez un conejito soñador que vivía en una casita en medio del
-        // bosque, rodeado de libros y fantasía, pero no tenía amigos. Todos le habían
-        // dado de lado porque se pasaba el día contando historias imaginarias sobre
-        // hazañas caballerescas, aventuras submarinas y expediciones extraterrestres.
-        // Siempre estaba inventando aventuras como si las hubiera vivido de verdad,
-        // hasta que sus amigos se cansaron de escucharle y acabó quedándose solo.\nAl
-        // principio el conejito se sintió muy triste y empezó a pensar que sus
-        // historias eran muy aburridas y por eso nadie las quería escuchar. Pero pese a
-        // eso continuó escribiendo.\nLas historias del conejito eran increíbles y le
-        // permitían vivir todo tipo de aventuras. Se imaginaba vestido de caballero
-        // salvando a inocentes princesas o sintiendo el frío del mar sobre su traje de
-        // buzo mientras exploraba las profundidades del océano.");
-        // Postprocesamiento obj1 = new Postprocesamiento("Había una vez un conejito
-        // soñador que vivía en una casita.fantasía, pero no tenía amigos. Todos le
-        // habían dado de lado porque se pasaba el inocentes princesas o sintiendo el
-        // frío del mar sobre su traje de buzo mientras exploraba",obj);
-        // obj1.informarPlagio(obj);
 
         File folder = new File("./TextosOriginales");
 
@@ -43,13 +25,14 @@ public class Main  {
 
         respaldarCachedeArreglodeProcesados();//para que en las segundas ejecuciónes ya no preprocese los textos originales y demore menos
 
+        //Nota mental: SI CAMBIAS ALGO (ya sea borrar o agregar)DEBES DE EJECUTAR LAS LINEAS ANTERIORES O NO FUNCIONCIONARA Y BOTARAR ERROR DE SERIALIZACIÓN O QUIZA OTRO QUE NI ENTIENDAS
 
 
         postprocesar();
 
 
 
-        //mostrarResultados();
+        mostrarResultados();
     }
 
     public static void findAllFilesInFolder(File folder) { // esta funcion lee los archivos que tienes en tu carpeta
@@ -86,7 +69,7 @@ public class Main  {
 
     public static void preprocesar(String contenido) {
         Preprocesador temporal = new Preprocesador(contenido);// aqui preproceso el contenido
-        /////////
+        /////////aqui podemos imprimir todos los arboles
         //for (ArbolBST arbolito : temporal.getArreglodeArboles()) {
         //        arbolito.imprimirArbol();
         //    }
@@ -98,7 +81,7 @@ public class Main  {
     public static void postprocesar(){ // aqui se postprocesaran los que ya se añadierona al array, de hecho aqui se iteran lso pres
         leerCachedeArreglodePreprocesados();
         for (int i = 0; i < arreglodepreprocesados.size(); i++) {
-            //postprocesarauxiliar(arraydepreprocesadorescatado.get(i));
+            postprocesarauxiliar(arreglodepreprocesados.get(i));
             for (ArbolBST arbolito : arreglodepreprocesados.get(i).getArreglodeArboles()) {
                 arbolito.imprimirArbol();
             }
@@ -147,10 +130,6 @@ public class Main  {
             FileInputStream ficheroEntrada = new FileInputStream(nombreFichero);// abre archivo
             ObjectInputStream objetoEntrada = new ObjectInputStream(ficheroEntrada);// lee objetos
             arreglodepreprocesados = (ArrayList<Preprocesador>) objetoEntrada.readObject(); // hacemos casting
-            ////
-            arreglodepreprocesados.get(0).getArreglodeArboles().get(0).imprimirArbol();
-
-            ////
             objetoEntrada.close();// aqui viene el cierre del objeto
             ficheroEntrada.close();
             System.out.println("Archivo leido satisfatoriamente :D");
