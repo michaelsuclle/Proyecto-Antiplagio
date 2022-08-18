@@ -33,7 +33,7 @@ public class Postprocesamiento implements java.io.Serializable{//tiene que se se
                         //System.out.println("El valor de busqueda " + palabratemporal + " es " + arreglodearbolestemporal.get(j).buscar(palabratemporal));
                         if (arreglodearbolestemporal.get(j).buscar(palabratemporal) == 1){// aqui estamos buscando en cada arbol, arbol por arbol
                             contadorplagiopororacion++;
-                            //System.out.println("Contador de plagio: "+contadorplagiopororacion);
+                            System.out.println("Contador de plagio: "+contadorplagiopororacion);
                         }
                         
 
@@ -54,7 +54,7 @@ public class Postprocesamiento implements java.io.Serializable{//tiene que se se
                         //System.out.println("El valor de busqueda " + palabratemporal + " es " + arreglodearbolestemporal.get(j).buscar(palabratemporal));
                         if (arreglodearbolestemporal.get(j).buscar(palabratemporal) == 1){
                             contadorplagiopororacion++;
-                            //System.out.println("Contador de plagio: "+contadorplagiopororacion);
+                            System.out.println("Contador de plagio: "+contadorplagiopororacion);
                         }// aqui estamos generando el arbol, palabra por
                     }
                 }

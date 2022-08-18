@@ -71,6 +71,7 @@ public class Main extends JFrame {
         boton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 textosospechoso = textarea1.getText();
+                Postprocesamiento.arregloconindicesdeplagio = new ArrayList<ArrayList<Integer>>();
                 postprocesar();
                 escribirContenido(textarea1.getText(), "./Cache/CacheAreadeTexto.txt");
    				JOptionPane.showMessageDialog(ventana, "Postprocesamiento Terminado");//informa de que el proceso acabó
