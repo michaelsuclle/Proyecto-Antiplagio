@@ -61,45 +61,40 @@ public class ArbolBST implements java.io.Serializable{//tiene que se serializabl
         }
     }
 
-    public void buscar(String elementoabuscar){ // String porque sabemos que trabajaremos con estos
+    public int buscar(String elementoabuscar){ // String porque sabemos que trabajaremos con estos
         //System.out.println("ENTRAMOS A BUSQUEDA");
         if (noderoot == null||noderoot.valor == null) {
             //System.out.println("no hay nodos");
-            return;
+            return 0;
         } else {
             //System.out.println(" vs buscando en  ");
-            buscarauxiliar(noderoot, elementoabuscar);
+            return buscarauxiliar(noderoot, elementoabuscar);
         }
     }
 
-    public void buscarauxiliar(Node elementoreferencia, String elementoabuscar) {
+    public int buscarauxiliar(Node elementoreferencia, String elementoabuscar) {
         //System.out.println("entramos a buscar");
         comparador.setStrength(Collator.SECONDARY);
-        int indicecomparador = comparador.compare(elementoreferencia.valor, elementoabuscar);// aqui comparamos(-1 si el
-                                                                                             // izquierdo va antes y es
-                                                                                             // 1 si el derecho va
-                                                                                             // antes)
+        int indicecomparador = comparador.compare(elementoreferencia.valor, elementoabuscar);// aqui comparamos(-1 si el izquierdo va antes y es 1 si el derecho va antes)
         if (indicecomparador == 0) {// verificamos si coincide
             System.out.println("Las palabras " + elementoabuscar + " son iguales - MATCH");
             palabrasplagiadas++;
-            return;
+            return 1;
         } else {
             if (indicecomparador < 0) {//
                 if (elementoreferencia.nododerecho == null) {
                     //System.out.println("palabra no encontrada");
-                    return;
+                    return 0;
                 }
                 //System.out.println(elementoabuscar + " Debe estar a la derecha de " + elementoreferencia.valor);
-                buscarauxiliar(elementoreferencia.nododerecho, elementoabuscar);
-                return;
+                return buscarauxiliar(elementoreferencia.nododerecho, elementoabuscar);
             } else {
                 if (elementoreferencia.nodoizquierdo == null) {
                     //System.out.println("palabra no encontrada");
-                    return;
+                    return 0;
                 }
                 //System.out.println(elementoabuscar + " Debe estar a la izquierda de " + elementoreferencia.valor);
-                buscarauxiliar(elementoreferencia.nodoizquierdo, elementoabuscar);
-                return;
+                return buscarauxiliar(elementoreferencia.nodoizquierdo, elementoabuscar);
             }
         }
     }
